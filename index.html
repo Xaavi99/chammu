@@ -5,30 +5,172 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>For My Chammu ❤️</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
-    body { font-family: system-ui, sans-serif; }
-    .hero { background: linear-gradient(135deg, #9f1239, #be123c); }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero { background: linear-gradient(135deg, #9f1239 0%, #be123c 100%); }
+    .heart { animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
+    #lovemap { height: 420px; border-radius: 24px; }
+    .flower { font-size: 3rem; cursor: pointer; transition: all 0.3s; }
+    .flower:hover { transform: scale(1.6) rotate(25deg); }
   </style>
 </head>
-<body class="bg-rose-50">
+<body class="bg-rose-50 text-gray-800">
 
-  <section class="hero min-h-screen flex items-center justify-center text-white text-center p-6">
-    <div>
-      <h1 class="text-6xl font-bold mb-4">For My Chammu ❤️</h1>
-      <p class="text-2xl">I love you endlessly</p>
+  <!-- Hero -->
+  <section class="hero min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute top-8 left-1/2 -translate-x-1/2 z-10">
+      <div class="w-72 h-72 md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-8 border-white shadow-2xl">
+        <img src="us.jpeg" alt="Us ❤️" class="w-full h-full object-cover">
+      </div>
+    </div>
+    <div class="text-center z-20 px-6 mt-48 md:mt-64">
+      <div class="text-7xl mb-6 heart">❤️</div>
+      <h1 class="text-6xl md:text-7xl font-bold mb-4">For My Chammu</h1>
+      <p class="text-3xl mb-8">I love you endlessly 💕</p>
     </div>
   </section>
 
-  <section class="py-12">
-    <div class="max-w-4xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8 text-rose-600">Our Memories</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <img src="us.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/1015/600/400'">
-        <img src="chammu-portrait.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/64/600/400'">
-        <img src="roses.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/201/600/400'">
+  <!-- Music Player -->
+  <section class="py-6 text-white sticky top-0 z-50 shadow-lg bg-gradient-to-r from-rose-700 to-pink-700">
+    <div class="max-w-md mx-auto px-6 flex items-center gap-4">
+      <button onclick="toggleMusic()" id="play-btn" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-2xl">▶️</button>
+      <div class="flex-1">
+        <p class="text-sm opacity-90">Our Song</p>
+        <p class="text-lg font-medium">Perfect - Ed Sheeran</p>
+      </div>
+      <audio id="love-song" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </section>
+
+  <!-- Countdown -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-rose-600 mb-8">Days Since I Fell in Love With You</h2>
+      <div id="countdown" class="grid grid-cols-4 gap-6 max-w-md mx-auto"></div>
+    </div>
+  </section>
+
+  <!-- Digital Love Map -->
+  <section class="py-20 bg-rose-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-4 text-rose-600">Our Digital Love Map 🌍</h2>
+      <p class="text-center text-rose-500 mb-10">Every pin is a beautiful memory with you</p>
+      <div id="lovemap"></div>
+    </div>
+  </section>
+
+  <!-- Memories -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-12 text-rose-600">Our Beautiful Memories 💕</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <img src="us.jpeg" class="rounded-3xl shadow-xl">
+        <img src="chammu-portrait.jpeg" class="rounded-3xl shadow-xl">
+        <img src="roses.jpeg" class="rounded-3xl shadow-xl">
       </div>
     </div>
   </section>
 
+  <!-- Flower Garden -->
+  <section class="py-20 bg-rose-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-bold mb-4 text-rose-700">Flower Garden for Chammu 🌷</h2>
+      <p class="mb-10 text-rose-600">Click anywhere to grow flowers for my love 💐</p>
+      <div id="garden" class="min-h-[420px] bg-white rounded-3xl border-4 border-rose-200 p-8 relative overflow-hidden cursor-pointer"></div>
+    </div>
+  </section>
+
+  <!-- Love Letter -->
+  <section class="py-20 bg-white">
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="bg-rose-50 rounded-3xl p-12 shadow-xl">
+        <h2 class="text-4xl font-bold text-center mb-10 text-rose-600">My Love Letter 💌</h2>
+        <div class="leading-relaxed text-lg space-y-6 text-gray-700">
+          <p>My dearest Chammu,</p>
+          <p>You are the most beautiful part of my life. Your smile melts my heart every single time.</p>
+          <p>I promise to always make you feel loved, cherished, and happy. You deserve the world and I want to give it to you.</p>
+          <p class="text-center font-medium text-rose-600 text-xl mt-8">I love you beyond words ❤️</p>
+          <p class="text-right">- Your Xavier</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-12 bg-rose-900 text-white text-center">
+    <p class="text-2xl">Made with endless love for Chammu 💕</p>
+  </footer>
+
+  <script>
+    // Music Player
+    const audio = document.getElementById('love-song');
+    let isPlaying = false;
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        document.getElementById('play-btn').innerHTML = '▶️';
+      } else {
+        audio.play();
+        document.getElementById('play-btn').innerHTML = '⏸️';
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Countdown
+    const loveDate = new Date("2025-01-01").getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = now - loveDate;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `
+        <div class="bg-rose-50 rounded-3xl p-6"><div class="text-5xl font-bold text-rose-600">${String(days).padStart(2, '0')}</div><div class="text-sm">Days</div></div>
+        <div class="bg-rose-50 rounded-3xl p-6"><div class="text-5xl font-bold text-rose-600">${String(hours).padStart(2, '0')}</div><div class="text-sm">Hours</div></div>
+        <div class="bg-rose-50 rounded-3xl p-6"><div class="text-5xl font-bold text-rose-600">${String(minutes).padStart(2, '0')}</div><div class="text-sm">Minutes</div></div>
+        <div class="bg-rose-50 rounded-3xl p-6"><div class="text-5xl font-bold text-rose-600">${String(seconds).padStart(2, '0')}</div><div class="text-sm">Seconds</div></div>
+      `;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Digital Love Map
+    function initLoveMap() {
+      const map = L.map('lovemap').setView([20, 0], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+      const memories = [
+        {coords: [13.0827, 80.2707], name: "Our Beginning", message: "Where our beautiful story started ❤️"},
+        {coords: [51.5074, -0.1278], name: "First Date", message: "The day I fell completely in love"},
+        {coords: [28.6139, 77.2090], name: "Unforgettable Moments", message: "You looked so beautiful"}
+      ];
+
+      memories.forEach(m => {
+        L.marker(m.coords).addTo(map).bindPopup(`<b>${m.name}</b><br>${m.message}`);
+      });
+    }
+    window.onload = initLoveMap;
+
+    // Virtual Flower Garden
+    const flowers = ['🌷', '🌹', '💐', '🌺', '🌸', '🌻', '🥀'];
+    const garden = document.getElementById('garden');
+    garden.addEventListener('click', (e) => {
+      const flower = document.createElement('div');
+      flower.className = 'flower absolute';
+      flower.style.left = (e.offsetX - 25) + 'px';
+      flower.style.top = (e.offsetY - 25) + 'px';
+      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+      garden.appendChild(flower);
+      setTimeout(() => flower.remove(), 8000);
+    });
+  </script>
 </body>
 </html>
