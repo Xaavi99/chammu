@@ -5,97 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>For My Chammu ❤️</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; }
-    .hero { background: linear-gradient(135deg, #9f1239 0%, #be123c 100%); }
-    .heart { animation: float 3s ease-in-out infinite; }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-25px); } }
-    img { max-width: 100%; height: auto; display: block; }
+    body { font-family: system-ui, sans-serif; }
+    .hero { background: linear-gradient(135deg, #9f1239, #be123c); }
   </style>
 </head>
-<body class="bg-rose-50 text-gray-800">
+<body class="bg-rose-50">
 
-  <!-- Hero -->
-  <section class="hero min-h-screen flex items-center justify-center text-white relative overflow-hidden">
-    <div class="absolute inset-0 bg-black/40"></div>
-    
-    <div class="absolute top-8 left-1/2 -translate-x-1/2 z-10">
-      <div class="w-72 h-72 md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-8 border-white shadow-2xl">
-        <img src="us.jpeg" alt="Us ❤️" class="w-full h-full object-cover">
-      </div>
-    </div>
-
-    <div class="text-center z-20 px-6 mt-48 md:mt-64">
-      <div class="text-7xl mb-6 heart">❤️</div>
-      <h1 class="text-6xl md:text-7xl font-bold mb-4">For My Chammu</h1>
-      <p class="text-3xl mb-8">I love you endlessly 💕</p>
+  <section class="hero min-h-screen flex items-center justify-center text-white text-center p-6">
+    <div>
+      <h1 class="text-6xl font-bold mb-4">For My Chammu ❤️</h1>
+      <p class="text-2xl">I love you endlessly</p>
     </div>
   </section>
 
-  <!-- Memories -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-rose-600">Our Beautiful Memories 💕</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="us.jpeg" class="w-full h-80 object-cover">
-        </div>
-        <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="chammu-portrait.jpeg" class="w-full h-80 object-cover">
-        </div>
-        <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="roses.jpeg" class="w-full h-80 object-cover">
-        </div>
+  <section class="py-12">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-8 text-rose-600">Our Memories</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <img src="us.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/1015/600/400'">
+        <img src="chammu-portrait.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/64/600/400'">
+        <img src="roses.jpeg" class="rounded-2xl shadow-lg" onerror="this.src='https://picsum.photos/id/201/600/400'">
       </div>
     </div>
   </section>
 
-  <!-- Flower Garden -->
-  <section class="py-20 bg-rose-100">
-    <div class="max-w-6xl mx-auto px-6 text-center">
-      <h2 class="text-4xl font-bold mb-4 text-rose-700">Flower Garden for Chammu 🌷</h2>
-      <p class="mb-10 text-rose-600">Click anywhere to grow flowers for my love 💐</p>
-      <div id="garden" class="min-h-[420px] bg-white rounded-3xl border-4 border-rose-200 p-8 relative overflow-hidden cursor-pointer"></div>
-    </div>
-  </section>
-
-  <!-- Love Letter -->
-  <section class="py-20 bg-white">
-    <div class="max-w-2xl mx-auto px-6">
-      <div class="bg-rose-50 rounded-3xl p-12 shadow-xl">
-        <h2 class="text-4xl font-bold text-center mb-10 text-rose-600">My Love Letter to You 💌</h2>
-        <div class="leading-relaxed text-lg space-y-6 text-gray-700">
-          <p>My dearest Chammu,</p>
-          <p>You are the most precious person in my life. Your smile, your voice, and your love make every day feel like a dream.</p>
-          <p>I promise to always cherish you, support you, and love you with all my heart.</p>
-          <p class="text-center font-medium text-rose-600 text-xl mt-8">I love you beyond words ❤️</p>
-          <p class="text-right">- Forever yours, Xavier</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="py-12 bg-rose-900 text-white text-center">
-    <p class="text-2xl">Made with endless love for Chammu 💕</p>
-    <p class="mt-2">May 2026</p>
-  </footer>
-
-  <script>
-    // Virtual Flower Garden
-    const flowers = ['🌷', '🌹', '💐', '🌺', '🌸', '🌻', '🥀'];
-    const garden = document.getElementById('garden');
-
-    garden.addEventListener('click', (e) => {
-      const flower = document.createElement('div');
-      flower.className = 'absolute text-4xl transition-all';
-      flower.style.left = (e.offsetX - 20) + 'px';
-      flower.style.top = (e.offsetY - 20) + 'px';
-      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-      garden.appendChild(flower);
-
-      setTimeout(() => flower.remove(), 7000);
-    });
-  </script>
 </body>
 </html>
