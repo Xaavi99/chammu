@@ -6,88 +6,46 @@
   <title>For My Chammu ❤️</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <style>
     body { font-family: 'Inter', system-ui, sans-serif; }
     .hero { background: linear-gradient(135deg, #9f1239 0%, #be123c 100%); }
     .heart { animation: float 3s ease-in-out infinite; }
     @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-    .flower { font-size: 2.8rem; cursor: pointer; transition: all 0.3s; }
-    .flower:hover { transform: scale(1.5) rotate(20deg); }
-    .memory-img { transition: all 0.4s; }
-    .memory-img:hover { transform: scale(1.08); }
-    #lovemap { height: 420px; border-radius: 24px; }
+    img { max-width: 100%; height: auto; display: block; }
   </style>
 </head>
 <body class="bg-rose-50 text-gray-800">
 
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero min-h-screen flex items-center justify-center text-white relative overflow-hidden">
     <div class="absolute inset-0 bg-black/40"></div>
+    
     <div class="absolute top-8 left-1/2 -translate-x-1/2 z-10">
       <div class="w-72 h-72 md:w-[380px] md:h-[380px] rounded-full overflow-hidden border-8 border-white shadow-2xl">
-        <img src="us.jpg" alt="Us ❤️" class="w-full h-full object-cover">
+        <img src="us.jpeg" alt="Us ❤️" class="w-full h-full object-cover">
       </div>
     </div>
+
     <div class="text-center z-20 px-6 mt-48 md:mt-64">
       <div class="text-7xl mb-6 heart">❤️</div>
       <h1 class="text-6xl md:text-7xl font-bold mb-4">My Sweet Chammu</h1>
-      <p class="text-3xl mb-8">Our Love Story Across the Map</p>
-    </div>
-  </section>
-
-  <!-- Music Player -->
-  <section class="py-6 text-white sticky top-0 z-50 shadow-lg bg-gradient-to-r from-rose-700 to-pink-700">
-    <div class="max-w-md mx-auto px-6 flex items-center gap-4">
-      <button onclick="toggleMusic()" id="play-btn" class="w-12 h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-2xl">▶️</button>
-      <div class="flex-1">
-        <p class="text-sm opacity-90">Our Song</p>
-        <p class="text-lg font-medium">Perfect - Ed Sheeran</p>
-      </div>
-      <audio id="love-song" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </section>
-
-  <!-- Digital Love Map -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-4 text-rose-600">Our Digital Love Map 🌍</h2>
-      <p class="text-center text-rose-500 mb-10">Every pin holds a beautiful memory with you</p>
-      <div id="lovemap"></div>
+      <p class="text-3xl mb-8">I love you more every day</p>
     </div>
   </section>
 
   <!-- Memories Gallery -->
-  <section class="py-20 bg-rose-50">
+  <section class="py-20 bg-white">
     <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-4xl font-bold text-center mb-12 text-rose-600">Our Beautiful Memories</h2>
+      <h2 class="text-4xl font-bold text-center mb-12 text-rose-600">Our Beautiful Memories 💕</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="us.jpg" class="memory-img w-full h-80 object-cover">
+          <img src="us.jpeg" class="w-full h-80 object-cover">
         </div>
         <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="chammu-portrait.jpg" class="memory-img w-full h-80 object-cover">
+          <img src="chammu-portrait.jpeg" class="w-full h-80 object-cover">
         </div>
         <div class="rounded-3xl overflow-hidden shadow-xl">
-          <img src="roses.jpg" class="memory-img w-full h-80 object-cover">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Love Letter -->
-  <section class="py-20 bg-white">
-    <div class="max-w-2xl mx-auto px-6">
-      <div class="bg-rose-50 rounded-3xl p-12 shadow-xl">
-        <h2 class="text-4xl font-bold text-center mb-10 text-rose-600">My Love Letter 💌</h2>
-        <div class="leading-relaxed text-lg space-y-6 text-gray-700">
-          <p>My dearest Chammu,</p>
-          <p>You've made my life so colorful and full of love. I cherish every moment with you.</p>
-          <p class="text-center font-medium text-rose-600 text-xl mt-8">I love you beyond words ❤️</p>
-          <p class="text-right">- Your Xavier</p>
+          <img src="roses.jpeg" class="w-full h-80 object-cover">
         </div>
       </div>
     </div>
@@ -97,60 +55,5 @@
     <p class="text-2xl">Made with endless love for Chammu 💕</p>
   </footer>
 
-  <script>
-    // Music Player
-    const audio = document.getElementById('love-song');
-    let isPlaying = false;
-    function toggleMusic() {
-      if (isPlaying) {
-        audio.pause();
-        document.getElementById('play-btn').innerHTML = '▶️';
-      } else {
-        audio.play();
-        document.getElementById('play-btn').innerHTML = '⏸️';
-      }
-      isPlaying = !isPlaying;
-    }
-
-    // Digital Love Map
-    function initLoveMap() {
-      const map = L.map('lovemap').setView([20, 0], 2);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '❤️ Made for Chammu'
-      }).addTo(map);
-
-      // Memory Pins (Customize these!)
-      const memories = [
-        {
-          coords: [51.5074, -0.1278], // London example
-          name: "First Date",
-          message: "The day I knew you were special ❤️"
-        },
-        {
-          coords: [13.0827, 80.2707], // Chennai example
-          name: "Our Sweet Moments",
-          message: "Where our story began"
-        },
-        {
-          coords: [28.6139, 77.2090], // Delhi example
-          name: "Unforgettable Day",
-          message: "You looked so beautiful that day"
-        }
-      ];
-
-      memories.forEach(mem => {
-        const marker = L.marker(mem.coords).addTo(map);
-        marker.bindPopup(`<b>${mem.name}</b><br>${mem.message}`);
-      });
-    }
-
-    // Initialize map when page loads
-    window.onload = initLoveMap;
-
-    // Flower Garden (kept for fun)
-    const flowers = ['🌷', '🌹', '💐', '🌺', '🌸', '🌻'];
-    const garden = document.getElementById('garden') || document.createElement('div'); // fallback if not present
-  </script>
 </body>
 </html>
